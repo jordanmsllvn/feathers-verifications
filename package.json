@@ -2,8 +2,8 @@
   "name": "@jordanmsllvn/feathers-verifications",
   "version": "1.0.0",
   "description": "Verification token system for FeathersJS. Enabling password reset, email verification, and beyond.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib/**/*"
   ],
