@@ -17,6 +17,7 @@ export default class FeathersVerifications {
           hooks.disableExternal(),
           hooks.checkIsRegistered(this.options.verifications),
           hooks.stringifyData(),
+          hooks.generateExpiration(this.options.verifications),
           hooks.generateVerificationToken()
         ],
         patch: [hooks.applyVerificationAction(this.options.verifications)],
