@@ -22,7 +22,7 @@ export interface IVerificationDefinition {
 export interface IVerificationRecord {
     type: string;
     token: string;
-    data: any;
+    data?: string | object;
     expires: number;
 }
 /**

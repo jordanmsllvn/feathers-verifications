@@ -129,7 +129,11 @@ export const createVerificationAction = (
 
   if (verification) {
     try {
-      const create = verification.action.create(result);
+      const verificationRecord = result;
+      if (typeof verificationRecord.data === "string") {
+        verificationRecord.data = JSON.parse(verificationRecord.data);
+      }
+      const create = verification.action.create(verificationRecord);
       await create;
     } catch (e) {
       throw e;
@@ -171,6 +175,9 @@ export const applyVerificationAction = (
     throw new errors.BadRequest(`This validation type is no longer valid.`);
 
   try {
+    if (typeof vRecord.data === "string") {
+      vRecord.data = JSON.parse(vRecord.data);
+    }
     const apply = verification.action.apply(vRecord, data);
     await apply;
     const postApply = verification.action._postApply(vRecord);
