@@ -30,10 +30,10 @@ test("generateExpiration sets expiration to 'life' seconds in future when 'life'
   const newContext = hooks.generateExpiration(mockVerificationDefinitons)(
     mockContext
   );
-  expect(newContext.data.expire).toBeGreaterThanOrEqual(
+  expect(newContext.data.expires).toBeGreaterThanOrEqual(
     Math.floor(Date.now() / 1000) + 1000
   );
-  expect(newContext.data.expire).toBeLessThan(
+  expect(newContext.data.expires).toBeLessThan(
     Math.floor(Date.now() / 1000) + 1050
   );
 });
@@ -43,7 +43,7 @@ test('generateExpiration sets expiration to 0 if "life" is set to 0', () => {
   const newContext = hooks.generateExpiration(mockVerificationDefinitons)(
     mockContext
   );
-  expect(newContext.data.expire).toEqual(0);
+  expect(newContext.data.expires).toEqual(0);
 });
 
 test('generateExpiration sets expiration to 0 if "life" is undefined', () => {
@@ -51,7 +51,7 @@ test('generateExpiration sets expiration to 0 if "life" is undefined', () => {
   const newContext = hooks.generateExpiration(mockVerificationDefinitons)(
     mockContext
   );
-  expect(newContext.data.expire).toEqual(0);
+  expect(newContext.data.expires).toEqual(0);
 });
 
 test("checkIsRegistered properly throws if a specified type is unregistered", () => {

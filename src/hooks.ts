@@ -23,7 +23,7 @@ export const generateExpiration = (
     rv => rv.type === context.data.type
   );
   if (!verificationDefinition) return context;
-  context.data.expire = verificationDefinition.life
+  context.data.expires = verificationDefinition.life
     ? Math.floor(Date.now() / 1000) + verificationDefinition.life
     : 0;
   return context;
@@ -130,7 +130,7 @@ export const createVerificationAction = (
   if (verification) {
     try {
       const create = verification.action.create(result);
-      if (create.then) await create;
+      await create;
     } catch (e) {
       throw e;
     }
@@ -172,9 +172,9 @@ export const applyVerificationAction = (
 
   try {
     const apply = verification.action.apply(vRecord, data);
-    if (apply.then) await apply;
+    await apply;
     const postApply = verification.action._postApply(vRecord);
-    if (postApply.then) await postApply;
+    await postApply;
   } catch (e) {
     throw e;
   }
