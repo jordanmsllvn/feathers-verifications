@@ -4,6 +4,9 @@ import { IFeathersVerificationsOptions } from "./types";
 
 export default class FeathersVerifications {
   constructor(private options: IFeathersVerificationsOptions) {
+    if (this.options.service.options) {
+      this.options.service.options.multi = ["patch", "remove"];
+    }
     this.injectBaseHooks();
   }
 

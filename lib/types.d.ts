@@ -20,6 +20,7 @@ export interface IVerificationDefinition {
  * Fields in the database table
  */
 export interface IVerificationRecord {
+    id?: string;
     type: string;
     token: string;
     data?: string | object;

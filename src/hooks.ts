@@ -30,11 +30,12 @@ export const generateExpiration = (
 };
 
 /**
- * Checks the validity of a token on find
+ * Checks the validity of a token on find (for external calls only, internal calls use normal find)
  */
 export const checkValidity = () => async (
   context: HookContext
 ): Promise<HookContext> => {
+  if (!context.params.provider) return context;
   if (
     !context.params.query ||
     !context.params.query.type ||
@@ -57,6 +58,7 @@ export const checkValidity = () => async (
   )
     throw new errors.Forbidden(`This token has expired`);
   delete verification.data;
+  delete verification.id;
   context.result = verification;
   return context;
 };
@@ -185,6 +187,8 @@ export const applyVerificationAction = (
   } catch (e) {
     throw e;
   }
+
+  context.result = { message: "success" };
 
   return context;
 };

@@ -9,7 +9,7 @@ export declare const generateVerificationToken: () => (context: HookContext<any>
  */
 export declare const generateExpiration: (registeredVerifications: IVerificationDefinition[]) => (context: HookContext<any>) => HookContext<any>;
 /**
- * Checks the validity of a token on find
+ * Checks the validity of a token on find (for external calls only, internal calls use normal find)
  */
 export declare const checkValidity: () => (context: HookContext<any>) => Promise<HookContext<any>>;
 /**
