@@ -23,7 +23,7 @@ export interface IVerificationRecord {
     id?: string;
     type: string;
     token: string;
-    data?: string | object;
+    data?: any;
     expires: number;
 }
 /**
